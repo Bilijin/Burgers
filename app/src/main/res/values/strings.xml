@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">Burgers</string>
+    <string name="icon">An icon</string>
+    <string name="hi">Hi, Danielle</string>
+    <string name="special">Food Special For You</string>
+    <string name="search">Search</string>
+    <string name="categories">Categories</string>
+    <string name="popular">Most Popular</string>
+    <string name="burgers">Burgers</string>
+    <string name="image">An Image</string>
+    <string name="chicken_burger">Chicken Burger</string>
+    <string name="flavoroso">Flavoroso</string>
+    <string name="pricee">500</string>
+    <string name="my_order">My Order,</string>
+    <string name="items_selected">3 Items Selected</string>
+    <string name="sub">Subtotal (4items)</string>
+    <string name="delivery_charge">Delivery Charge</string>
+    <string name="cart_price">2000</string>
+    <string name="delivery">Free Delivery</string>
+    <string name="total">Total Amount</string>
+    <string name="checkout">Checkout</string>
+    <string name="beef_cheese">Beef Cheese Burger</string>
+    <string name="long_text">Food consisting of one or more cooked patties of ground meat,
+     usually beef, placed inside a sliced bread roll or bun</string>
+    <string name="add_to_card">Add to Card</string>
+    <string name="salmon_burger">Salmon Burger</string>
+    <string name="veggie_burger">Vegan Burger</string>
+    <string name="salty_squid">Salty Squid</string>
+    <string name="masala">Masala</string>
+    <string name="veggie_corner">Veggie Corner</string>
+    <string name="noodles">Noodles</string>
+    <string name="champagne">Champagne</string>
+    <string name="drinks">Drinks</string>
+    <string name="rolls">Rolls</string>
+</resources>
