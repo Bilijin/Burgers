@@ -4,7 +4,7 @@ package com.mobolajialabi.burgers.models;
 public class CartBurger {
     private final int image;
     private final String name;
-    private final String price;
+    private String price;
 
     public CartBurger(int image, String price, String name) {
         this.image = image;
@@ -22,6 +22,10 @@ public class CartBurger {
 
     public String getName() {
         return name;
+    }
+
+    public void setPrice(String amount){
+        this.price = amount;
     }
 
 }

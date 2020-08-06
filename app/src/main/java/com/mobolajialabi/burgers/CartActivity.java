@@ -17,6 +17,8 @@ import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.lang.Integer.parseInt;
+
 public class CartActivity extends AppCompatActivity {
 
     RecyclerView cartRecyclerView;
@@ -24,6 +26,7 @@ public class CartActivity extends AppCompatActivity {
     ImageView cartBack;
     TextView price;
     TextView price2;
+    CartBurgerAdapter cartBurgerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +39,8 @@ public class CartActivity extends AppCompatActivity {
         cartBack = findViewById(R.id.cart_back);
         cartBurgers = new ArrayList<>();
 
+        cartBurgerAdapter = new CartBurgerAdapter(cartBurgers,this);
+
         cartBurgers.add(new CartBurger(R.drawable.cheese_burger,"450",getString(R.string.chicken_burger)));
         cartBurgers.add(new CartBurger(R.drawable.french_fries,"250",getString(R.string.chicken_burger)));
         cartBurgers.add(new CartBurger(R.drawable.pizza_cabonara,"600",getString(R.string.chicken_burger)));
@@ -43,7 +48,7 @@ public class CartActivity extends AppCompatActivity {
         cartRecyclerView = findViewById(R.id.cart_recycler);
         cartRecyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
 
-        cartRecyclerView.setAdapter(new CartBurgerAdapter(cartBurgers));
+        cartRecyclerView.setAdapter(cartBurgerAdapter);
 
         cartBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,11 +57,21 @@ public class CartActivity extends AppCompatActivity {
             }
         });
 
-        price.setText(NumberFormat.getCurrencyInstance().format(Integer.parseInt(price.getText().toString())));
-        price2.setText(NumberFormat.getCurrencyInstance().format(Integer.parseInt(price2.getText().toString())));
+        price.setText(NumberFormat.getCurrencyInstance().format(parseInt(price.getText().toString())));
+        price2.setText(NumberFormat.getCurrencyInstance().format(parseInt(price2.getText().toString())));
 
-//        for (int i = 0;i<cartBurgers.size();i++) {
-//            String p = cartBurgers.get(i).getPrice();
-//        }
+        setTotalPrice();
+
+    }
+
+    public void setTotalPrice(){
+        int total = 0;
+        for (int i = 0;i<3;i++) {
+            int p = parseInt(cartBurgers.get(i).getPrice());
+            total = total + p;
+
+            price.setText(NumberFormat.getCurrencyInstance().format(total));
+            price2.setText(NumberFormat.getCurrencyInstance().format(total));
+        }
     }
 }

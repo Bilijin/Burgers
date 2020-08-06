@@ -1,5 +1,6 @@
 package com.mobolajialabi.burgers.adapters;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.mobolajialabi.burgers.CartActivity;
 import com.mobolajialabi.burgers.R;
 import com.mobolajialabi.burgers.models.CartBurger;
 
@@ -17,9 +19,12 @@ import java.util.List;
 
 public class CartBurgerAdapter extends RecyclerView.Adapter<CartBurgerAdapter.MyViewHolder> {
     private List<CartBurger> cartBurgers;
+    private int amt;
+    private Context context;
 
-    public CartBurgerAdapter(List<CartBurger> cartBurgers) {
+    public CartBurgerAdapter(List<CartBurger> cartBurgers,Context context) {
         this.cartBurgers = cartBurgers;
+        this.context = context;
     }
 
     @NonNull
@@ -32,7 +37,9 @@ public class CartBurgerAdapter extends RecyclerView.Adapter<CartBurgerAdapter.My
 
     @Override
     public void onBindViewHolder(@NonNull final CartBurgerAdapter.MyViewHolder holder, int position) {
-        CartBurger cartBurger = cartBurgers.get(position);
+
+
+        final CartBurger cartBurger = cartBurgers.get(position);
 
         TextView textView = holder.name;
         textView.setText(cartBurger.getName());
@@ -52,10 +59,13 @@ public class CartBurgerAdapter extends RecyclerView.Adapter<CartBurgerAdapter.My
                 if (p < 20){
                     p = p + 1;
 
-                    int amt = Integer.parseInt(pp) * p;
+                    amt = Integer.parseInt(pp) * p;
                     String aa = NumberFormat.getCurrencyInstance().format(amt);
                     holder.price.setText(aa);
+                    cartBurger.setPrice(String.valueOf(amt));
                     holder.count.setText(String.valueOf(p));
+
+                    ((CartActivity)context).setTotalPrice();
                 }
             }
         });
@@ -67,14 +77,18 @@ public class CartBurgerAdapter extends RecyclerView.Adapter<CartBurgerAdapter.My
                 if (p > 1){
                     p = p - 1;
 
-                    int amt = Integer.parseInt(pp) * p;
-                    holder.price.setText(String.valueOf(amt));
+                    amt = Integer.parseInt(pp) * p;
                     String aa = NumberFormat.getCurrencyInstance().format(amt);
+                    cartBurger.setPrice(String.valueOf(amt));
                     holder.price.setText(aa);
                     holder.count.setText(String.valueOf(p));
+
+                    ((CartActivity)context).setTotalPrice();
+
                 }
             }
         });
+
 
     }
 
@@ -103,4 +117,5 @@ public class CartBurgerAdapter extends RecyclerView.Adapter<CartBurgerAdapter.My
             count = itemView.findViewById(R.id.count);
         }
     }
+
 }
